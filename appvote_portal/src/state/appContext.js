@@ -234,17 +234,38 @@ export const AppStateProvider = ({ children }) => {
   // Initialize machines and ensure they're ready
   // Initialize machines synchronously to ensure proper actor lifecycles
   React.useEffect(() => {
-    // Ensure we start with fresh actor instances
-    authSend({ type: 'INITIALIZED' });
-    contestSend({ type: 'INITIALIZED' });
-    appSend({ type: 'INITIALIZED' });
-    setIsInitialized(true);
+    let mounted = true;
 
-    // Cleanup function to handle actor disposal
+    const initializeMachines = async () => {
+      try {
+        // Start the actors in order of dependency
+        await authState.start();
+        await contestState.start();
+        await appState.start();
+
+        // Only update state if component is still mounted
+        if (mounted) {
+          authSend({ type: 'INITIALIZED' });
+          contestSend({ type: 'INITIALIZED' });
+          appSend({ type: 'INITIALIZED' });
+          setIsInitialized(true);
+        }
+      } catch (err) {
+        if (mounted) {
+          setError(err);
+        }
+      }
+    };
+
+    initializeMachines();
+
+    // Cleanup function to handle actor disposal in reverse order
     return () => {
-      authState.stop();
-      contestState.stop();
+      mounted = false;
+      // Stop actors in reverse order of dependency
       appState.stop();
+      contestState.stop();
+      authState.stop();
     };
   }, [authSend, contestSend, appSend, authState, contestState, appState]);
 
