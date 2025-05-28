@@ -403,20 +403,34 @@ export const useContest = () => {
  */
 export const useAppMachine = () => {
   const { appState, appSend } = useAppState();
+  const mountedRef = React.useRef(true);
   
   React.useEffect(() => {
-    // Ensure the actor is running
-    appState.start();
+    mountedRef.current = true;
+    
+    if (!appState.status !== 'running') {
+      appState.start();
+    }
+    
     return () => {
-      // Cleanup when component unmounts
-      appState.stop();
+      mountedRef.current = false;
+      if (appState.status === 'running') {
+        appState.stop();
+      }
     };
   }, [appState]);
 
-  if (!appState || !appSend) {
-    throw new Error('App state machine not properly initialized');
+  if (!appState?.status === 'running' || !appSend) {
+    throw new Error('App state machine not properly initialized or has been stopped');
   }
-  return { state: appState, send: appSend };
+
+  const safeSend = React.useCallback((...args) => {
+    if (mountedRef.current && appState.status === 'running') {
+      appSend(...args);
+    }
+  }, [appSend, appState]);
+
+  return { state: appState, send: safeSend };
 };
 
 export default AppStateContext;
