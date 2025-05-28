@@ -72,7 +72,7 @@ body {
 }
 
 .subtitle {
-  color: var(--kavia-orange);
+  color: var(--primary-main);
   font-weight: 500;
   font-size: 1.1rem;
 }
@@ -82,6 +82,7 @@ body {
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
+  color: var(--text-primary);
 }
 
 .description {
@@ -92,8 +93,9 @@ body {
   margin-bottom: 16px;
 }
 
+/* Keep old btn class for backward compatibility */
 .btn {
-  background-color: var(--kavia-orange);
+  background-color: var(--primary-main);
   color: white;
   border: none;
   border-radius: 4px;
@@ -101,14 +103,43 @@ body {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
-  background-color: #FF8B4D;
+  background-color: var(--primary-hover);
 }
 
 .btn-large {
   padding: 12px 24px;
   font-size: 1.1rem;
+}
+
+/* Disabled state */
+.btn:disabled {
+  background-color: #CBD5E1;
+  color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* Secondary variant */
+.btn-secondary {
+  background-color: #F1F5F9;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: #E2E8F0;
+}
+
+/* Outline variant */
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-main);
+  border: 1px solid var(--primary-main);
+}
+
+.btn-outline:hover {
+  background-color: rgba(25, 118, 210, 0.08);
 }
