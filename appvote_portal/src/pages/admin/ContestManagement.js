@@ -9,6 +9,16 @@ import { useContest } from '../../state/appContext';
  */
 const ContestManagement = () => {
   const { state, send } = useContest();
+  
+  // Guard against undefined state or send
+  if (!state || !send) {
+    return (
+      <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
+        Loading contest management...
+      </div>
+    );
+  }
+  
   const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
   

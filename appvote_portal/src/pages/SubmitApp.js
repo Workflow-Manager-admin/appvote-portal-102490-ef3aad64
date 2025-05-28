@@ -11,6 +11,15 @@ const SubmitApp = () => {
   const { state: authState } = useAuth();
   const { state: appState, send } = useAppMachine();
   
+  // Guard against undefined state
+  if (!appState) {
+    return (
+      <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
+        Loading...
+      </div>
+    );
+  }
+  
   const [appName, setAppName] = useState('');
   const [appLink, setAppLink] = useState('');
   const [appDescription, setAppDescription] = useState('');

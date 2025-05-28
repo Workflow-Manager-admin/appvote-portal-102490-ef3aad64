@@ -11,6 +11,15 @@ const Winners = () => {
   const [winners, setWinners] = useState([]);
   const [loading, setLoading] = useState(true);
   const { state } = useContest();
+  
+  // Guard against undefined state
+  if (!state) {
+    return (
+      <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
+        Loading...
+      </div>
+    );
+  }
 
   // Simulated winner data (would be fetched from state/context in full implementation)
   useEffect(() => {
