@@ -1,38 +1,41 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 /**
  * Custom hook for safely initializing and managing XState actors
- * Handles mounting, unmounting, and error states
+ * Ensures proper initialization, error handling, and cleanup of actors
  */
-export function useActorInit(actor, onError) {
+export const useActorInit = (actor, onError) => {
   const mountedRef = useRef(true);
   const actorRef = useRef(null);
-  const [isReady, setIsReady] = useState(false);
-  const [error, setError] = useState(null);
+  const errorRef = useRef(null);
 
   useEffect(() => {
     mountedRef.current = true;
-
+    
     const initActor = async () => {
       try {
         if (!actor) {
           throw new Error('Actor is undefined');
         }
 
+        // Store reference to current actor
         actorRef.current = actor;
 
+        // Ensure actor is started
         if (actor.status !== 'running') {
           await actor.start();
         }
 
-        if (mountedRef.current) {
-          setIsReady(true);
-          setError(null);
+        // Verify actor is properly initialized
+        if (!actor.getSnapshot()) {
+          throw new Error('Actor snapshot unavailable after initialization');
         }
+
+        errorRef.current = null;
       } catch (err) {
-        if (mountedRef.current) {
-          setError(err);
-          onError?.(err);
+        errorRef.current = err;
+        if (onError && mountedRef.current) {
+          onError(err);
         }
       }
     };
@@ -41,77 +44,35 @@ export function useActorInit(actor, onError) {
 
     return () => {
       mountedRef.current = false;
-      try {
-        if (actor?.status === 'running') {
-          actor.stop();
+      
+      // Safely stop actor on unmount
+      const cleanup = async () => {
+        try {
+          if (actorRef.current?.status === 'running') {
+            await actorRef.current.stop();
+          }
+        } catch (err) {
+          console.error('Error stopping actor:', err);
+          if (onError) {
+            onError(err);
+          }
         }
-      } catch (err) {
-        console.error('Error stopping actor:', err);
-      }
+      };
+
+      cleanup();
     };
   }, [actor, onError]);
 
+  // Return safe wrapper around actor that checks initialization status
   const safeActor = {
-    status: actorRef.current?.status || 'stopped',
     send: (...args) => {
-      if (!isReady || !mountedRef.current || !actorRef.current) {
-        console.warn('Attempted to send event to uninitialized actor');
-        return;
+      if (actorRef.current?.status === 'running') {
+        return actorRef.current.send(...args);
       }
-
-      if (actorRef.current.status !== 'running') {
-        console.warn('Attempted to send event to non-running actor');
-        return;
-      }
-
-      try {
-        actorRef.current.send(...args);
-      } catch (err) {
-        console.error('Error sending event to actor:', err);
-        setError(err);
-        onError?.(err);
-      }
+      throw new Error('Cannot send events to uninitialized or stopped actor');
     },
-    start: async () => {
-      try {
-        if (!actorRef.current) {
-          throw new Error('Actor is undefined');
-        }
-        await actorRef.current.start();
-        if (mountedRef.current) {
-          setIsReady(true);
-        }
-      } catch (err) {
-        if (mountedRef.current) {
-          setError(err);
-          onError?.(err);
-        }
-      }
-    },
-    stop: () => {
-      try {
-        actorRef.current?.stop();
-      } catch (err) {
-        console.error('Error stopping actor:', err);
-      }
-    },
-    getSnapshot: () => {
-      if (!isReady || !actorRef.current) {
-        return undefined;
-      }
-      try {
-        return actorRef.current.getSnapshot();
-      } catch (err) {
-        console.error('Error getting actor snapshot:', err);
-        return undefined;
-      }
-    }
+    status: actorRef.current?.status || 'unknown'
   };
 
-  return {
-    actor: safeActor,
-    isReady,
-    error,
-    isMounted: mountedRef.current
-  };
-}
+  return { actor: safeActor, error: errorRef.current };
+};

@@ -55,15 +55,17 @@ const AppWrapper = () => {
 function App() {
   return (
     <ErrorBoundary>
-      <SupabaseProvider>
-        <ActorErrorBoundary>
-          <AppStateProvider>
-            <Router>
-              <AppWrapper />
-            </Router>
-          </AppStateProvider>
-        </ActorErrorBoundary>
-      </SupabaseProvider>
+      <Router>
+        <SupabaseProvider>
+          <ActorErrorBoundary>
+            <AppStateProvider>
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <AppWrapper />
+              </React.Suspense>
+            </AppStateProvider>
+          </ActorErrorBoundary>
+        </SupabaseProvider>
+      </Router>
     </ErrorBoundary>
   );
 }
