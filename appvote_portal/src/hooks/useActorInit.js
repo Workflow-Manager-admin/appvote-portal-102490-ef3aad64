@@ -52,21 +52,32 @@ export function useActorInit(actor, onError) {
   }, [actor, onError]);
 
   const safeActor = {
-    status: actor?.status || 'stopped',
+    status: actorRef.current?.status || 'stopped',
     send: (...args) => {
-      if (mountedRef.current && actor?.status === 'running') {
-        try {
-          actor.send(...args);
-        } catch (err) {
-          console.error('Error sending event to actor:', err);
-          setError(err);
-          onError?.(err);
-        }
+      if (!isReady || !mountedRef.current || !actorRef.current) {
+        console.warn('Attempted to send event to uninitialized actor');
+        return;
+      }
+
+      if (actorRef.current.status !== 'running') {
+        console.warn('Attempted to send event to non-running actor');
+        return;
+      }
+
+      try {
+        actorRef.current.send(...args);
+      } catch (err) {
+        console.error('Error sending event to actor:', err);
+        setError(err);
+        onError?.(err);
       }
     },
     start: async () => {
       try {
-        await actor?.start();
+        if (!actorRef.current) {
+          throw new Error('Actor is undefined');
+        }
+        await actorRef.current.start();
         if (mountedRef.current) {
           setIsReady(true);
         }
@@ -79,9 +90,20 @@ export function useActorInit(actor, onError) {
     },
     stop: () => {
       try {
-        actor?.stop();
+        actorRef.current?.stop();
       } catch (err) {
         console.error('Error stopping actor:', err);
+      }
+    },
+    getSnapshot: () => {
+      if (!isReady || !actorRef.current) {
+        return undefined;
+      }
+      try {
+        return actorRef.current.getSnapshot();
+      } catch (err) {
+        console.error('Error getting actor snapshot:', err);
+        return undefined;
       }
     }
   };
