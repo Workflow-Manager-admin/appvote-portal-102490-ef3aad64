@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { useInterpret, useSelector } from '@xstate/react';
+import { useMachine } from '@xstate/react';
 import { authMachine } from './authMachine';
 import { contestMachine } from './contestMachine';
 import { appStateMachine } from './appStateMachine';
