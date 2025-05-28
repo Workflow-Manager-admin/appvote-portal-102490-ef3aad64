@@ -10,8 +10,13 @@ import { useAuth, useAppMachine } from '../state/appContext';
 const SubmitApp = () => {
   const { state: authState } = useAuth();
   const { state: appState, send } = useAppMachine();
+  const [appName, setAppName] = useState('');
+  const [appLink, setAppLink] = useState('');
+  const [appDescription, setAppDescription] = useState('');
+  const [appImage, setAppImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+  const [formErrors, setFormErrors] = useState({});
   
-  // Guard against undefined state and ensure state is initialized
   if (!appState || !appState.context) {
     return (
       <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
@@ -19,13 +24,6 @@ const SubmitApp = () => {
       </div>
     );
   }
-  
-  const [appName, setAppName] = useState('');
-  const [appLink, setAppLink] = useState('');
-  const [appDescription, setAppDescription] = useState('');
-  const [appImage, setAppImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState('');
-  const [formErrors, setFormErrors] = useState({});
   
   const isSubmitting = appState.matches('ready.creatingApp');
 
