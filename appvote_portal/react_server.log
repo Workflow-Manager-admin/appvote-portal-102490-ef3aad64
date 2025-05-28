@@ -7053,3 +7053,348 @@ Require stack:
 - /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/react-scripts/config/__placeholder__.js
 
 webpack compiled with 25 errors
+Compiling...
+Failed to compile.
+
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+ERROR in ./src/components/layout/Footer.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/components/layout/Navbar.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/hooks/useActorInit.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/pages/Home.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/pages/Login.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/pages/Register.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/pages/SubmitApp.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/pages/Winners.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/pages/admin/AdminDashboard.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/pages/admin/ContestManagement.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./src/styles/theme.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:178:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:189:18
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:53:2)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+
+ERROR in ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/@supabase/supabase-js/dist/module/index.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/@xstate/react/dist/xstate-react.development.esm.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/css-loader/dist/runtime/api.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/css-loader/dist/runtime/sourceMaps.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/react-dom/client.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/react-refresh/runtime.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/react-router-dom/dist/index.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/react/index.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/react/jsx-dev-runtime.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=0.0.0.0&port=3000&pathname=%2Fws&logging=none&overlay=%7B%22errors%22%3Atrue%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=true&live-reload=true
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/webpack/hot/dev-server.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in ./node_modules/xstate/dist/xstate.development.esm.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+LoaderRunnerError: Module '/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/babel-loader/lib/index.js' is not a loader (must have normal or pitch function)
+    at handleResult (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:49:19)
+    at loadLoader (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/loadLoader.js:35:10)
+    at iteratePitchingLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:182:2)
+    at runLoaders (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/loader-runner/lib/LoaderRunner.js:398:2)
+    at NormalModule._doBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:965:3)
+    at NormalModule.build (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1155:15)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1422:12
+    at NormalModule.needBuild (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/NormalModule.js:1480:26)
+    at Compilation._buildModule (/home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/Compilation.js:1403:10)
+    at /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/webpack/lib/util/AsyncQueue.js:340:10
+
+ERROR in [eslint] Failed to load plugin 'import' declared in 'package.json » eslint-config-react-app': Cannot find module 'eslint-plugin-import'
+Require stack:
+- /home/kavia/workspace/code-generation/appvote-portal-102490-ef3aad64/appvote_portal/node_modules/react-scripts/config/__placeholder__.js
+
+webpack compiled with 25 errors

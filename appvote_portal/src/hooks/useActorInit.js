@@ -32,29 +32,53 @@ export const useActorInit = (actor, onError) => {
     
     const initActor = async () => {
       try {
+        console.group('Actor Initialization');
+        console.log('Initializing actor...');
+        
         if (!actor) {
+          console.error('Actor is undefined');
           throw new Error('Actor is undefined');
         }
+
+        console.log('Initial actor state:');
+        logActorState(actor, 'Initial');
 
         // Store reference to current actor
         actorRef.current = actor;
 
         // Ensure actor is started
         if (actor.status !== 'running') {
+          console.log('Starting actor...');
           await actor.start();
+          console.log('Actor started');
+        }
+
+        // Verify actor methods and properties
+        console.log('Validating actor...');
+        if (typeof actor.getSnapshot !== 'function') {
+          console.error('Actor missing getSnapshot method');
+          throw new Error('Actor missing getSnapshot method');
         }
 
         // Verify actor is properly initialized
-        if (!actor.getSnapshot()) {
+        const snapshot = actor.getSnapshot();
+        if (!snapshot) {
+          console.error('Actor snapshot unavailable after initialization');
           throw new Error('Actor snapshot unavailable after initialization');
         }
 
+        console.log('Actor successfully initialized');
+        logActorState(actor, 'Final');
+        
         errorRef.current = null;
+        console.groupEnd();
       } catch (err) {
+        console.error('Actor initialization failed:', err);
         errorRef.current = err;
         if (onError && mountedRef.current) {
           onError(err);
         }
+        console.groupEnd();
       }
     };
 
