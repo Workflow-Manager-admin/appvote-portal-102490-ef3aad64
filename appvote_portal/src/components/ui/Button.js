@@ -147,9 +147,12 @@ const Button = ({
     return classes.trim();
   };
 
+  // If Component is not 'button', we shouldn't pass button-specific props
+  const buttonProps = Component === 'button' ? { type, disabled } : {};
+  
   return (
-    <button
-      type={type}
+    <Component
+      {...buttonProps}
       onClick={onClick}
       disabled={disabled}
       className={getButtonClassName()}
@@ -157,7 +160,7 @@ const Button = ({
       {...props}
     >
       {children}
-    </button>
+    </Component>
   );
 };
 
