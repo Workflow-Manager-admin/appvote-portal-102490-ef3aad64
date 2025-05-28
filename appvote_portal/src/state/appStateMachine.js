@@ -67,7 +67,7 @@ export const appStateMachine = createMachine({
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, event) => event.data,
+                error: (_, evt) => evt.data,
                 isLoading: false
               })
             }
@@ -90,7 +90,7 @@ export const appStateMachine = createMachine({
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, event) => event.data,
+                error: (_, evt) => evt.data,
                 isLoading: false
               })
             }
@@ -113,7 +113,7 @@ export const appStateMachine = createMachine({
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, event) => event.data,
+                error: (_, evt) => evt.data,
                 isLoading: false
               })
             }
@@ -152,7 +152,7 @@ export const appStateMachine = createMachine({
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, event) => event.data,
+                error: (_, evt) => evt.data,
                 isLoading: false,
                 notification: {
                   type: 'error',
@@ -186,7 +186,7 @@ export const appStateMachine = createMachine({
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, event) => event.data,
+                error: (_, evt) => evt.data,
                 isLoading: false,
                 notification: {
                   type: 'error',
@@ -213,7 +213,7 @@ export const appStateMachine = createMachine({
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, event) => event.data,
+                error: (_, evt) => evt.data,
                 isLoading: false
               })
             }
