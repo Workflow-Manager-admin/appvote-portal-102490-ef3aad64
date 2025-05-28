@@ -6,6 +6,8 @@ import { AppStateProvider } from './state/appContext';
 import { Modal } from './components/ui';
 import { Navbar, Footer } from './components/layout';
 import { ALL_ROUTES } from './routes';
+import ErrorBoundary from './components/ErrorBoundary';
+import ActorErrorBoundary from './components/ActorErrorBoundary';
 
 // AppWrapper component to wrap the app with Navbar
 const AppWrapper = () => {
