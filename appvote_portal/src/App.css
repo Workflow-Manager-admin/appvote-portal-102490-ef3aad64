@@ -26,7 +26,7 @@ body {
 }
 
 .navbar {
-  background-color: var(--kavia-dark);
+  background-color: var(--background-paper);
   padding: 16px;
   display: flex;
   align-items: center;
@@ -37,6 +37,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .logo {
@@ -45,10 +46,11 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: var(--text-primary);
 }
 
 .logo-symbol {
-  color: var(--kavia-orange);
+  color: var(--primary-main);
 }
 
 .container {
