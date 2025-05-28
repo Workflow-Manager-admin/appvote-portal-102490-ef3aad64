@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
  */
 export function useActorInit(actor, onError) {
   const mountedRef = useRef(true);
+  const actorRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState(null);
 
