@@ -331,7 +331,7 @@ export const useAuth = () => {
     mountedRef.current = true;
     
     // Check if actor is already running to prevent duplicate starts
-    if (!authState.status !== 'running') {
+    if (authState.status !== 'running') {
       authState.start();
     }
     
@@ -345,7 +345,7 @@ export const useAuth = () => {
   }, [authState]);
 
   // Verify actor status before returning
-  if (!authState?.status === 'running' || !authSend) {
+  if (!authState || authState.status !== 'running' || !authSend) {
     throw new Error('Auth state machine not properly initialized or has been stopped');
   }
 
@@ -371,7 +371,7 @@ export const useContest = () => {
   React.useEffect(() => {
     mountedRef.current = true;
     
-    if (!contestState.status !== 'running') {
+    if (contestState.status !== 'running') {
       contestState.start();
     }
     
@@ -383,7 +383,7 @@ export const useContest = () => {
     };
   }, [contestState]);
 
-  if (!contestState?.status === 'running' || !contestSend) {
+  if (!contestState || contestState.status !== 'running' || !contestSend) {
     throw new Error('Contest state machine not properly initialized or has been stopped');
   }
 
@@ -408,7 +408,7 @@ export const useAppMachine = () => {
   React.useEffect(() => {
     mountedRef.current = true;
     
-    if (!appState.status !== 'running') {
+    if (appState.status !== 'running') {
       appState.start();
     }
     
@@ -420,7 +420,7 @@ export const useAppMachine = () => {
     };
   }, [appState]);
 
-  if (!appState?.status === 'running' || !appSend) {
+  if (!appState || appState.status !== 'running' || !appSend) {
     throw new Error('App state machine not properly initialized or has been stopped');
   }
 
