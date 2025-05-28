@@ -54,18 +54,18 @@ export const contestMachine = createMachine({
           on: {
             CREATE_CONTEST: {
               target: 'creating',
-              cond: (_, __, { isAdmin }) => isAdmin()
+              guard: (_, __, { isAdmin }) => isAdmin()
             },
             LOAD_CONTEST_DETAILS: {
               target: 'loadingDetails'
             },
             UPDATE_CONTEST: {
               target: 'updating',
-              cond: (_, __, { isAdmin }) => isAdmin()
+              guard: (_, __, { isAdmin }) => isAdmin()
             },
             DECLARE_WINNERS: {
               target: 'declaringWinners',
-              cond: (_, __, { isAdmin }) => isAdmin()
+              guard: (_, __, { isAdmin }) => isAdmin()
             },
             END_CONTEST: {
               target: 'ending',
