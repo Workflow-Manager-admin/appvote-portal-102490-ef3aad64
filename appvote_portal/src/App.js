@@ -50,15 +50,19 @@ const AppWrapper = () => {
   );
 };
 
+import ErrorBoundary from './components/ErrorBoundary';
+
 function App() {
   return (
-    <SupabaseProvider>
-      <AppStateProvider>
-        <Router>
-          <AppWrapper />
-        </Router>
-      </AppStateProvider>
-    </SupabaseProvider>
+    <ErrorBoundary>
+      <SupabaseProvider>
+        <AppStateProvider>
+          <Router>
+            <AppWrapper />
+          </Router>
+        </AppStateProvider>
+      </SupabaseProvider>
+    </ErrorBoundary>
   );
 }
 
