@@ -15,11 +15,19 @@ export function useActorInit(actor, onError) {
 
     const initActor = async () => {
       try {
-        if (actor && actor.status !== 'running') {
+        if (!actor) {
+          throw new Error('Actor is undefined');
+        }
+
+        actorRef.current = actor;
+
+        if (actor.status !== 'running') {
           await actor.start();
-          if (mountedRef.current) {
-            setIsReady(true);
-          }
+        }
+
+        if (mountedRef.current) {
+          setIsReady(true);
+          setError(null);
         }
       } catch (err) {
         if (mountedRef.current) {
