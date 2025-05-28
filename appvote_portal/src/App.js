@@ -52,15 +52,19 @@ const AppWrapper = () => {
 
 import ErrorBoundary from './components/ErrorBoundary';
 
+import ActorErrorBoundary from './components/ActorErrorBoundary';
+
 function App() {
   return (
     <ErrorBoundary>
       <SupabaseProvider>
-        <AppStateProvider>
-          <Router>
-            <AppWrapper />
-          </Router>
-        </AppStateProvider>
+        <ActorErrorBoundary>
+          <AppStateProvider>
+            <Router>
+              <AppWrapper />
+            </Router>
+          </AppStateProvider>
+        </ActorErrorBoundary>
       </SupabaseProvider>
     </ErrorBoundary>
   );

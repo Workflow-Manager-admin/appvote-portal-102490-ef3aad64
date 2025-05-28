@@ -34,6 +34,7 @@ export const AppStateProvider = ({ children }) => {
   const { user, userProfile, supabase, isAdmin } = useSupabase();
   const [isInitialized, setIsInitialized] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const mountedRef = React.useRef(true);
 
   // Auth machine services
   const authServices = {
@@ -231,27 +232,39 @@ export const AppStateProvider = ({ children }) => {
     }
   });
 
-  // Initialize machines and ensure they're ready
-  // Initialize machines synchronously to ensure proper actor lifecycles
+  // Initialize machines with proper error handling and cleanup
   React.useEffect(() => {
-    let mounted = true;
+    mountedRef.current = true;
 
     const initializeMachines = async () => {
       try {
-        // Start the actors in order of dependency
-        await authState.start();
-        await contestState.start();
-        await appState.start();
+        if (!mountedRef.current) return;
 
-        // Only update state if component is still mounted
-        if (mounted) {
+        // Start actors in dependency order with error handling
+        for (const actor of [authState, contestState, appState]) {
+          if (actor.status !== 'running') {
+            try {
+              await actor.start();
+            } catch (err) {
+              console.error(`Failed to start actor: ${actor.id}`, err);
+              if (mountedRef.current) {
+                setError(err);
+              }
+              return;
+            }
+          }
+        }
+
+        // Send initialization events only if still mounted
+        if (mountedRef.current) {
           authSend({ type: 'INITIALIZED' });
           contestSend({ type: 'INITIALIZED' });
           appSend({ type: 'INITIALIZED' });
           setIsInitialized(true);
         }
       } catch (err) {
-        if (mounted) {
+        console.error('Failed to initialize state machines:', err);
+        if (mountedRef.current) {
           setError(err);
         }
       }
@@ -259,13 +272,21 @@ export const AppStateProvider = ({ children }) => {
 
     initializeMachines();
 
-    // Cleanup function to handle actor disposal in reverse order
+    // Cleanup function with proper error handling
     return () => {
-      mounted = false;
-      // Stop actors in reverse order of dependency
-      appState.stop();
-      contestState.stop();
-      authState.stop();
+      mountedRef.current = false;
+      
+      // Stop actors in reverse dependency order
+      const actors = [appState, contestState, authState];
+      actors.forEach(actor => {
+        try {
+          if (actor.status === 'running') {
+            actor.stop();
+          }
+        } catch (err) {
+          console.error(`Error stopping actor: ${actor.id}`, err);
+        }
+      });
     };
   }, [authSend, contestSend, appSend, authState, contestState, appState]);
 
@@ -287,7 +308,6 @@ export const AppStateProvider = ({ children }) => {
     );
   }
 
-  // Provide state and send functions to components
   const value = {
     authState,
     authSend,
@@ -325,34 +345,57 @@ export const useAppState = () => {
 export const useAuth = () => {
   const { authState, authSend } = useAppState();
   const mountedRef = React.useRef(true);
-  
+  const [error, setError] = React.useState(null);
+
   React.useEffect(() => {
-    // Set mounted flag
     mountedRef.current = true;
-    
-    // Check if actor is already running to prevent duplicate starts
-    if (authState.status !== 'running') {
-      authState.start();
-    }
-    
+
+    const initActor = async () => {
+      if (!mountedRef.current) return;
+
+      try {
+        if (authState && authState.status !== 'running') {
+          await authState.start();
+        }
+      } catch (err) {
+        console.error('Error initializing auth actor:', err);
+        if (mountedRef.current) {
+          setError(err);
+        }
+      }
+    };
+
+    initActor();
+
     return () => {
       mountedRef.current = false;
-      // Only stop if we started it and component is unmounting
-      if (authState.status === 'running') {
-        authState.stop();
+      try {
+        if (authState?.status === 'running') {
+          authState.stop();
+        }
+      } catch (err) {
+        console.error('Error stopping auth actor:', err);
       }
     };
   }, [authState]);
 
-  // Verify actor status before returning
-  if (!authState || authState.status !== 'running' || !authSend) {
-    throw new Error('Auth state machine not properly initialized or has been stopped');
+  if (error) {
+    throw error;
   }
 
-  // Return wrapped send function that checks mounted status
+  if (!authState || !authSend) {
+    return { state: null, send: () => {} };
+  }
+
   const safeSend = React.useCallback((...args) => {
-    if (mountedRef.current && authState.status === 'running') {
+    if (!mountedRef.current || !authState?.status === 'running') return;
+    try {
       authSend(...args);
+    } catch (err) {
+      console.error('Error sending auth event:', err);
+      if (mountedRef.current) {
+        setError(err);
+      }
     }
   }, [authSend, authState]);
 
@@ -367,29 +410,57 @@ export const useAuth = () => {
 export const useContest = () => {
   const { contestState, contestSend } = useAppState();
   const mountedRef = React.useRef(true);
-  
+  const [error, setError] = React.useState(null);
+
   React.useEffect(() => {
     mountedRef.current = true;
-    
-    if (contestState.status !== 'running') {
-      contestState.start();
-    }
-    
+
+    const initActor = async () => {
+      if (!mountedRef.current) return;
+
+      try {
+        if (contestState && contestState.status !== 'running') {
+          await contestState.start();
+        }
+      } catch (err) {
+        console.error('Error initializing contest actor:', err);
+        if (mountedRef.current) {
+          setError(err);
+        }
+      }
+    };
+
+    initActor();
+
     return () => {
       mountedRef.current = false;
-      if (contestState.status === 'running') {
-        contestState.stop();
+      try {
+        if (contestState?.status === 'running') {
+          contestState.stop();
+        }
+      } catch (err) {
+        console.error('Error stopping contest actor:', err);
       }
     };
   }, [contestState]);
 
-  if (!contestState || contestState.status !== 'running' || !contestSend) {
-    throw new Error('Contest state machine not properly initialized or has been stopped');
+  if (error) {
+    throw error;
+  }
+
+  if (!contestState || !contestSend) {
+    return { state: null, send: () => {} };
   }
 
   const safeSend = React.useCallback((...args) => {
-    if (mountedRef.current && contestState.status === 'running') {
+    if (!mountedRef.current || !contestState?.status === 'running') return;
+    try {
       contestSend(...args);
+    } catch (err) {
+      console.error('Error sending contest event:', err);
+      if (mountedRef.current) {
+        setError(err);
+      }
     }
   }, [contestSend, contestState]);
 
@@ -404,33 +475,46 @@ export const useContest = () => {
 export const useAppMachine = () => {
   const { appState, appSend } = useAppState();
   const mountedRef = React.useRef(true);
-  
+  const [error, setError] = React.useState(null);
+
   React.useEffect(() => {
     mountedRef.current = true;
-    
-    if (appState.status !== 'running') {
-      appState.start();
-    }
-    
+
+    const initActor = async () => {
+      if (!mountedRef.current) return;
+
+      try {
+        if (appState && appState.status !== 'running') {
+          await appState.start();
+        }
+      } catch (err) {
+        console.error('Error initializing app actor:', err);
+        if (mountedRef.current) {
+          setError(err);
+        }
+      }
+    };
+
+    initActor();
+
     return () => {
       mountedRef.current = false;
-      if (appState.status === 'running') {
-        appState.stop();
+      try {
+        if (appState?.status === 'running') {
+          appState.stop();
+        }
+      } catch (err) {
+        console.error('Error stopping app actor:', err);
       }
     };
   }, [appState]);
 
-  if (!appState || appState.status !== 'running' || !appSend) {
-    throw new Error('App state machine not properly initialized or has been stopped');
+  if (error) {
+    throw error;
+  }
+
+  if (!appState || !appSend) {
+    return { state: null, send: () => {} };
   }
 
   const safeSend = React.useCallback((...args) => {
-    if (mountedRef.current && appState.status === 'running') {
-      appSend(...args);
-    }
-  }, [appSend, appState]);
-
-  return { state: appState, send: safeSend };
-};
-
-export default AppStateContext;
