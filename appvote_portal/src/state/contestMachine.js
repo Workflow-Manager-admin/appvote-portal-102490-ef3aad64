@@ -32,9 +32,9 @@ export const contestMachine = createMachine({
         onDone: {
           target: 'loaded',
           actions: assign({
-            contests: (_, evt) => evt.data.contests,
-            activeContest: (_, evt) => evt.data.activeContest || null,
-            error: null
+            contests: (_context, event) => event.data.contests,
+            activeContest: (_context, event) => event.data.activeContest || null,
+            error: (_context, _event) => null
           })
         },
         onError: {
