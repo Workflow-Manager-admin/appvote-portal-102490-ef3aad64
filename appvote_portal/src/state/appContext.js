@@ -32,6 +32,8 @@ const AppStateContext = createContext(null);
  */
 export const AppStateProvider = ({ children }) => {
   const { user, userProfile, supabase, isAdmin } = useSupabase();
+  const [isInitialized, setIsInitialized] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   // Auth machine services
   const authServices = {
@@ -239,6 +241,53 @@ export const AppStateProvider = ({ children }) => {
     appSend
   };
 
+  // Initialize machines and ensure they're ready
+  React.useEffect(() => {
+    const initializeMachines = async () => {
+      try {
+        // Send initial events to ensure machines are ready
+        await Promise.all([
+          new Promise(resolve => {
+            authSend('INITIALIZED');
+            resolve();
+          }),
+          new Promise(resolve => {
+            contestSend('INITIALIZED');
+            resolve();
+          }),
+          new Promise(resolve => {
+            appSend('INITIALIZED');
+            resolve();
+          })
+        ]);
+        setIsInitialized(true);
+      } catch (err) {
+        setError(err);
+        console.error('Failed to initialize state machines:', err);
+      }
+    };
+
+    initializeMachines();
+  }, [authSend, contestSend, appSend]);
+
+  if (error) {
+    return (
+      <div className="error-boundary">
+        <h2>Failed to initialize application state</h2>
+        <p>{error.message}</p>
+        <button onClick={() => window.location.reload()}>Retry</button>
+      </div>
+    );
+  }
+
+  if (!isInitialized) {
+    return (
+      <div className="loading">
+        <p>Initializing application...</p>
+      </div>
+    );
+  }
+
   return (
     <AppStateContext.Provider value={value}>
       {children}
@@ -266,6 +315,9 @@ export const useAppState = () => {
  */
 export const useAuth = () => {
   const { authState, authSend } = useAppState();
+  if (!authState || !authSend) {
+    throw new Error('Auth state machine not properly initialized');
+  }
   return { state: authState, send: authSend };
 };
 
