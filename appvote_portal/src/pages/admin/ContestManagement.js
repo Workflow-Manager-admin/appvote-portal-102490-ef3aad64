@@ -9,20 +9,8 @@ import { useContest } from '../../state/appContext';
  */
 const ContestManagement = () => {
   const { state, send } = useContest();
-  
-  // Guard against undefined state, send function, and ensure state is initialized
-  if (!state || !state.context || !send) {
-    return (
-      <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
-        Loading contest management...
-      </div>
-    );
-  }
-  
   const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  // New contest form state
   const [showNewContestModal, setShowNewContestModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -33,6 +21,9 @@ const ContestManagement = () => {
   
   // Load contests
   useEffect(() => {
+    if (!state || !state.context || !send) {
+      return;
+    }
     // In a complete implementation, we would load from the contest state:
     // setContests(state.context.contests || []);
     
