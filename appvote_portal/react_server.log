@@ -103,3 +103,38 @@ webpack compiled successfully
 Compiling...
 Compiled successfully!
 webpack compiled successfully
+Compiling...
+Failed to compile.
+
+Attempted import error: 'useInterpret' is not exported from '@xstate/react' (imported as 'useInterpret').
+WARNING in [eslint] 
+src/state/appContext.js
+  Line 24:3:    'getContestWinners' is defined but never used  no-unused-vars
+  Line 160:23:  'fileData' is assigned a value but never used  no-unused-vars
+
+ERROR in ./src/state/appContext.js 305:22-34
+export 'useInterpret' (imported as 'useInterpret') was not found in '@xstate/react' (possible exports: createActorContext, shallowEqual, useActor, useActorRef, useMachine, useSelector)
+
+ERROR in ./src/state/appContext.js 313:25-37
+export 'useInterpret' (imported as 'useInterpret') was not found in '@xstate/react' (possible exports: createActorContext, shallowEqual, useActor, useActorRef, useMachine, useSelector)
+
+ERROR in ./src/state/appContext.js 325:21-33
+export 'useInterpret' (imported as 'useInterpret') was not found in '@xstate/react' (possible exports: createActorContext, shallowEqual, useActor, useActorRef, useMachine, useSelector)
+
+ERROR in ./src/state/appContext.js 354:23-35
+export 'useInterpret' (imported as 'useInterpret') was not found in '@xstate/react' (possible exports: createActorContext, shallowEqual, useActor, useActorRef, useMachine, useSelector)
+
+ERROR in ./src/state/appContext.js 354:37-49
+export 'useInterpret' (imported as 'useInterpret') was not found in '@xstate/react' (possible exports: createActorContext, shallowEqual, useActor, useActorRef, useMachine, useSelector)
+
+ERROR in ./src/state/appContext.js 354:51-63
+export 'useInterpret' (imported as 'useInterpret') was not found in '@xstate/react' (possible exports: createActorContext, shallowEqual, useActor, useActorRef, useMachine, useSelector)
+
+ERROR in [eslint] 
+src/state/appStateMachine.js
+  Line 193:28:  Unexpected use of 'event'  no-restricted-globals
+  Line 236:24:  Unexpected use of 'event'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 7 errors and 1 warning
