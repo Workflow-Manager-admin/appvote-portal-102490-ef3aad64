@@ -324,20 +324,39 @@ export const useAppState = () => {
  */
 export const useAuth = () => {
   const { authState, authSend } = useAppState();
+  const mountedRef = React.useRef(true);
   
   React.useEffect(() => {
-    // Ensure the actor is running
-    authState.start();
+    // Set mounted flag
+    mountedRef.current = true;
+    
+    // Check if actor is already running to prevent duplicate starts
+    if (!authState.status !== 'running') {
+      authState.start();
+    }
+    
     return () => {
-      // Cleanup when component unmounts
-      authState.stop();
+      mountedRef.current = false;
+      // Only stop if we started it and component is unmounting
+      if (authState.status === 'running') {
+        authState.stop();
+      }
     };
   }, [authState]);
 
-  if (!authState || !authSend) {
-    throw new Error('Auth state machine not properly initialized');
+  // Verify actor status before returning
+  if (!authState?.status === 'running' || !authSend) {
+    throw new Error('Auth state machine not properly initialized or has been stopped');
   }
-  return { state: authState, send: authSend };
+
+  // Return wrapped send function that checks mounted status
+  const safeSend = React.useCallback((...args) => {
+    if (mountedRef.current && authState.status === 'running') {
+      authSend(...args);
+    }
+  }, [authSend, authState]);
+
+  return { state: authState, send: safeSend };
 };
 
 /**
@@ -347,20 +366,34 @@ export const useAuth = () => {
  */
 export const useContest = () => {
   const { contestState, contestSend } = useAppState();
+  const mountedRef = React.useRef(true);
   
   React.useEffect(() => {
-    // Ensure the actor is running
-    contestState.start();
+    mountedRef.current = true;
+    
+    if (!contestState.status !== 'running') {
+      contestState.start();
+    }
+    
     return () => {
-      // Cleanup when component unmounts
-      contestState.stop();
+      mountedRef.current = false;
+      if (contestState.status === 'running') {
+        contestState.stop();
+      }
     };
   }, [contestState]);
 
-  if (!contestState || !contestSend) {
-    throw new Error('Contest state machine not properly initialized');
+  if (!contestState?.status === 'running' || !contestSend) {
+    throw new Error('Contest state machine not properly initialized or has been stopped');
   }
-  return { state: contestState, send: contestSend };
+
+  const safeSend = React.useCallback((...args) => {
+    if (mountedRef.current && contestState.status === 'running') {
+      contestSend(...args);
+    }
+  }, [contestSend, contestState]);
+
+  return { state: contestState, send: safeSend };
 };
 
 /**
