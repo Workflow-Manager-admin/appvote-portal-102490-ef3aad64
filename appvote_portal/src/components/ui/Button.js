@@ -25,6 +25,7 @@ const Button = ({
   children,
   type = 'button',
   className = '',
+  as: Component = 'button',
   ...props
 }) => {
   // Base button styles

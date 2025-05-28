@@ -1,33 +1,64 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import { SupabaseProvider } from './services/SupabaseContext';
 import { AppStateProvider } from './state/appContext';
-import { Button, Card, Input, Modal } from './components/ui';
+import { Button, Card, Input } from './components/ui';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ProtectedRoute from './routes/ProtectedRoute';
+import { useAuth } from './state/appContext';
+
+// NavBar component with auth-aware rendering
+const NavBar = () => {
+  const { state, send } = useAuth();
+  const isAuthenticated = state.matches('authenticated');
+  const userProfile = state.context.userProfile;
+
+  const handleLogout = () => {
+    send({ type: 'LOGOUT' });
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="container">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <div className="logo">
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <span className="logo-symbol">*</span> AppVote Portal
+            </Link>
+          </div>
+          <div>
+            {isAuthenticated ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span>Welcome, {userProfile?.username || 'User'}</span>
+                <Button onClick={handleLogout} variant="secondary">Logout</Button>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Button as={Link} to="/login" variant="secondary">Login</Button>
+                <Button as={Link} to="/register">Sign Up</Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   return (
     <SupabaseProvider>
       <AppStateProvider>
         <Router>
           <div className="app">
-            <nav className="navbar">
-              <div className="container">
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                  <div className="logo">
-                    <span className="logo-symbol">*</span> AppVote Portal
-                  </div>
-                  <Button onClick={() => setShowModal(true)}>Login</Button>
-                </div>
-              </div>
-            </nav>
+            <NavBar />
 
             <main>
               <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/" element={
                   <div className="container">
                     <div className="hero">
