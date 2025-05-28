@@ -69,7 +69,7 @@ export const contestMachine = createMachine({
             },
             END_CONTEST: {
               target: 'ending',
-              cond: (_, __, { isAdmin }) => isAdmin()
+              guard: (_, __, { isAdmin }) => isAdmin()
             }
           }
         },
