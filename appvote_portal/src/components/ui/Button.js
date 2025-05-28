@@ -12,7 +12,8 @@ import { theme } from '../../styles/theme';
  * @param {boolean} [props.fullWidth=false] - Whether button should take up full width
  * @param {boolean} [props.disabled=false] - Whether button is disabled
  * @param {React.ReactNode} props.children - Button content
- * @param {string} [props.type='button'] - Button type attribute
+ * @param {string} [props.type='button'] - Button type attribute (only applicable when as="button")
+ * @param {string|React.ComponentType} [props.as='button'] - The component to render as (e.g., 'button', 'a', Link)
  * @param {string} [props.className] - Additional CSS class names
  * @returns {JSX.Element} Button component
  */
