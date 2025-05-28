@@ -1,16 +1,20 @@
 :root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --primary-main: #1976D2;
+  --primary-dark: #1565C0;
+  --primary-light: #42a5f5;
+  --primary-hover: #1669BB;
+  --background-default: #F5F7FA;
+  --background-paper: #FFFFFF;
+  --text-primary: #1A2027;
+  --text-secondary: #4B5563;
+  --border-color: #E5E7EB;
 }
 
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--kavia-dark);
-  color: var(--text-color);
+  background-color: var(--background-default);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
