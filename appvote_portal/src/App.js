@@ -59,7 +59,18 @@ function App() {
         <SupabaseProvider>
           <ActorErrorBoundary>
             <AppStateProvider>
-              <React.Suspense fallback={<div>Loading...</div>}>
+              <React.Suspense 
+                fallback={
+                  <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    height: '100vh' 
+                  }}>
+                    <p>Loading application state...</p>
+                  </div>
+                }
+              >
                 <AppWrapper />
               </React.Suspense>
             </AppStateProvider>
