@@ -5,8 +5,10 @@
 
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import ProtectedRoute from '../../routes/ProtectedRoute';
 
 export {
   LoginForm,
-  RegisterForm
+  RegisterForm,
+  ProtectedRoute
 };
