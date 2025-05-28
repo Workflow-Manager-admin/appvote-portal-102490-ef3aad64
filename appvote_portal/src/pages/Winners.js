@@ -12,8 +12,8 @@ const Winners = () => {
   const [loading, setLoading] = useState(true);
   const { state } = useContest();
   
-  // Guard against undefined state
-  if (!state) {
+  // Guard against undefined state and ensure state is initialized
+  if (!state || !state.context) {
     return (
       <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
         Loading...

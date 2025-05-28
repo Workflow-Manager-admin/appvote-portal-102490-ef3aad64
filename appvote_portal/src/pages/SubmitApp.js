@@ -11,8 +11,8 @@ const SubmitApp = () => {
   const { state: authState } = useAuth();
   const { state: appState, send } = useAppMachine();
   
-  // Guard against undefined state
-  if (!appState) {
+  // Guard against undefined state and ensure state is initialized
+  if (!appState || !appState.context) {
     return (
       <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
         Loading...

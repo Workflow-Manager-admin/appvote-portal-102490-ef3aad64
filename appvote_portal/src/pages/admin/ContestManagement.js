@@ -10,8 +10,8 @@ import { useContest } from '../../state/appContext';
 const ContestManagement = () => {
   const { state, send } = useContest();
   
-  // Guard against undefined state or send
-  if (!state || !send) {
+  // Guard against undefined state, send function, and ensure state is initialized
+  if (!state || !state.context || !send) {
     return (
       <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>
         Loading contest management...
