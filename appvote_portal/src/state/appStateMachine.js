@@ -59,16 +59,16 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                apps: (_, evt) => evt.data.apps || [],
-                isLoading: false,
-                error: null
+                apps: (_context, event) => event.data.apps || [],
+                isLoading: (_context, _event) => false,
+                error: (_context, _event) => null
               })
             },
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, evt) => evt.data,
-                isLoading: false
+                error: (_context, event) => event.data,
+                isLoading: (_context, _event) => false
               })
             }
           }
@@ -82,16 +82,16 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                userApps: (_, evt) => evt.data.apps || [],
-                isLoading: false,
-                error: null
+                userApps: (_context, event) => event.data.apps || [],
+                isLoading: (_context, _event) => false,
+                error: (_context, _event) => null
               })
             },
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, evt) => evt.data,
-                isLoading: false
+                error: (_context, event) => event.data,
+                isLoading: (_context, _event) => false
               })
             }
           }
@@ -105,16 +105,16 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                userVotes: (_, evt) => evt.data.votes || [],
-                isLoading: false,
-                error: null
+                userVotes: (_context, event) => event.data.votes || [],
+                isLoading: (_context, _event) => false,
+                error: (_context, _event) => null
               })
             },
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, evt) => evt.data,
-                isLoading: false
+                error: (_context, event) => event.data,
+                isLoading: (_context, _event) => false
               })
             }
           }
@@ -123,14 +123,14 @@ export const appStateMachine = createMachine({
         // Creating a new app submission
         creatingApp: {
           entry: assign({
-            formData: (context, evt) => ({
+            formData: (context, event) => ({
               ...context.formData,
-              appName: evt.appName,
-              appLink: evt.appLink,
-              appDescription: evt.appDescription,
-              appImage: evt.appImage
+              appName: event.appName,
+              appLink: event.appLink,
+              appDescription: event.appDescription,
+              appImage: event.appImage
             }),
-            isLoading: true
+            isLoading: (_context, _event) => true
           }),
           invoke: {
             src: 'createApp',
@@ -138,26 +138,26 @@ export const appStateMachine = createMachine({
               target: 'idle',
               actions: [
                 assign({
-                  userApps: (context, evt) => [...context.userApps, evt.data.app],
-                  apps: (context, evt) => [...context.apps, evt.data.app],
-                  isLoading: false,
-                  notification: {
+                  userApps: (context, event) => [...context.userApps, event.data.app],
+                  apps: (context, event) => [...context.apps, event.data.app],
+                  isLoading: (_context, _event) => false,
+                  notification: (_context, _event) => ({
                     type: 'success',
                     message: 'App submitted successfully!'
-                  },
-                  error: null
+                  }),
+                  error: (_context, _event) => null
                 })
               ]
             },
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, evt) => evt.data,
-                isLoading: false,
-                notification: {
+                error: (_context, event) => event.data,
+                isLoading: (_context, _event) => false,
+                notification: (_context, _event) => ({
                   type: 'error',
                   message: 'Failed to submit app. Please try again.'
-                }
+                })
               })
             }
           }
@@ -172,13 +172,13 @@ export const appStateMachine = createMachine({
               target: 'idle',
               actions: [
                 assign({
-                  userVotes: (context, evt) => [...context.userVotes, evt.data.vote],
-                  isLoading: false,
-                  notification: {
+                  userVotes: (context, event) => [...context.userVotes, event.data.vote],
+                  isLoading: (_context, _event) => false,
+                  notification: (_context, _event) => ({
                     type: 'success',
                     message: 'Vote submitted successfully!'
-                  },
-                  error: null
+                  }),
+                  error: (_context, _event) => null
                 }),
                 'updateAppVoteCount'
               ]
@@ -186,12 +186,12 @@ export const appStateMachine = createMachine({
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, evt) => evt.data,
-                isLoading: false,
-                notification: {
+                error: (_context, event) => event.data,
+                isLoading: (_context, _event) => false,
+                notification: (_context, event) => ({
                   type: 'error',
-                  message: evt.data.message || 'Failed to submit vote. Please try again.'
-                }
+                  message: event.data.message || 'Failed to submit vote. Please try again.'
+                })
               })
             }
           }
@@ -205,16 +205,16 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                currentApp: (_, evt) => evt.data.app,
-                isLoading: false,
-                error: null
+                currentApp: (_context, event) => event.data.app,
+                isLoading: (_context, _event) => false,
+                error: (_context, _event) => null
               })
             },
             onError: {
               target: 'idle',
               actions: assign({
-                error: (_, evt) => evt.data,
-                isLoading: false
+                error: (_context, event) => event.data,
+                isLoading: (_context, _event) => false
               })
             }
           }
@@ -225,21 +225,21 @@ export const appStateMachine = createMachine({
       on: {
         CLEAR_NOTIFICATION: {
           actions: assign({
-            notification: null
+            notification: (_context, _event) => null
           })
         },
         SET_ERROR: {
           actions: assign({
-            error: (_, evt) => evt.error,
-            notification: {
+            error: (_context, event) => event.error,
+            notification: (_context, event) => ({
               type: 'error',
-              message: evt.error.message || 'An error occurred. Please try again.'
-            }
+              message: event.error.message || 'An error occurred. Please try again.'
+            })
           })
         },
         CLEAR_ERROR: {
           actions: assign({
-            error: null
+            error: (_context, _event) => null
           })
         }
       }
