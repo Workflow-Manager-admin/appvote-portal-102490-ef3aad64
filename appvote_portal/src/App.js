@@ -1,54 +1,15 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SupabaseProvider } from './services/SupabaseContext';
-import { AppStateProvider, useAuth } from './state/appContext';
+import { AppStateProvider } from './state/appContext';
 import { Button, Card, Input, Modal } from './components/ui';
+import { Navbar } from './components/layout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './routes/ProtectedRoute';
 
-// NavBar component with auth-aware rendering
-const NavBar = () => {
-  const { state, send } = useAuth();
-  const isAuthenticated = state.matches('authenticated');
-  const userProfile = state.context.userProfile;
-  const [showModal, setShowModal] = useState(false);
-
-  const handleLogout = () => {
-    send({ type: 'LOGOUT' });
-  };
-
-  return (
-    <nav className="navbar">
-      <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-          <div className="logo">
-            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <span className="logo-symbol">*</span> AppVote Portal
-            </Link>
-          </div>
-          <div>
-            {isAuthenticated ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                <span>Welcome, {userProfile?.username || 'User'}</span>
-                <Button as={Link} to="/submit-app" variant="outline">Submit App</Button>
-                <Button onClick={handleLogout} variant="secondary">Logout</Button>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <Button as={Link} to="/login" variant="secondary">Login</Button>
-                <Button as={Link} to="/register">Sign Up</Button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
-};
-
-// AppWrapper component to wrap the app with NavBar
+// AppWrapper component to wrap the app with Navbar
 const AppWrapper = () => {
   const [demoEmail, setDemoEmail] = useState('');
   const [demoPassword, setDemoPassword] = useState('');
@@ -56,7 +17,7 @@ const AppWrapper = () => {
 
   return (
     <div className="app">
-      <NavBar />
+      <Navbar />
 
       <main>
         <Routes>
