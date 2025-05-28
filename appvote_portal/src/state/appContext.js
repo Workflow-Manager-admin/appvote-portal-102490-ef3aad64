@@ -214,7 +214,7 @@ export const AppStateProvider = ({ children }) => {
   const [contestState, contestSend] = useMachine(contestMachine, {
     services: contestServices,
     guards: {
-      isAdmin // Use the isAdmin function from SupabaseContext
+      isAdmin
     },
     actions: {
       notifyContestCreated: () => {},
@@ -230,16 +230,6 @@ export const AppStateProvider = ({ children }) => {
       updateAppVoteCount: () => {}
     }
   });
-
-  // Provide state and send functions to components
-  const value = {
-    authState,
-    authSend,
-    contestState,
-    contestSend,
-    appState,
-    appSend
-  };
 
   // Initialize machines and ensure they're ready
   React.useEffect(() => {
@@ -288,6 +278,16 @@ export const AppStateProvider = ({ children }) => {
     );
   }
 
+  // Provide state and send functions to components
+  const value = {
+    authState,
+    authSend,
+    contestState,
+    contestSend,
+    appState,
+    appSend
+  };
+
   return (
     <AppStateContext.Provider value={value}>
       {children}
@@ -328,6 +328,9 @@ export const useAuth = () => {
  */
 export const useContest = () => {
   const { contestState, contestSend } = useAppState();
+  if (!contestState || !contestSend) {
+    throw new Error('Contest state machine not properly initialized');
+  }
   return { state: contestState, send: contestSend };
 };
 
@@ -338,6 +341,9 @@ export const useContest = () => {
  */
 export const useAppMachine = () => {
   const { appState, appSend } = useAppState();
+  if (!appState || !appSend) {
+    throw new Error('App state machine not properly initialized');
+  }
   return { state: appState, send: appSend };
 };
 
