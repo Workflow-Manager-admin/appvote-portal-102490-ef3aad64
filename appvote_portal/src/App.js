@@ -4,7 +4,7 @@ import './App.css';
 import { SupabaseProvider } from './services/SupabaseContext';
 import { AppStateProvider } from './state/appContext';
 import { Button, Card, Input, Modal } from './components/ui';
-import { Navbar } from './components/layout';
+import { Navbar, Footer } from './components/layout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './routes/ProtectedRoute';
