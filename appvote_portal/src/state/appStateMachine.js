@@ -21,6 +21,7 @@ export const appStateMachine = createMachine({
     notification: null,
     isLoading: false,
     error: null,
+    isInitialized: false,
     formData: {
       appName: '',
       appLink: '',
@@ -32,7 +33,12 @@ export const appStateMachine = createMachine({
     // App initialization
     initializing: {
       on: {
-        INITIALIZED: 'ready'
+        INITIALIZED: {
+          target: 'ready',
+          actions: assign({
+            isInitialized: true
+          })
+        }
       }
     },
     
