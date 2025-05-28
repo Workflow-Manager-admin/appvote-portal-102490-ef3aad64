@@ -31,8 +31,8 @@ export const authMachine = createMachine({
         onDone: {
           target: 'authenticated',
           actions: assign({
-            user: (_, event) => event.data.user,
-            userProfile: (_, event) => event.data.userProfile,
+            user: (_, evt) => evt.data.user,
+            userProfile: (_, evt) => evt.data.userProfile,
             error: null
           })
         },
