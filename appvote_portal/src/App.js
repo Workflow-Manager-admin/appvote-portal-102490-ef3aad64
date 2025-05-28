@@ -141,6 +141,8 @@ const AppWrapper = () => {
           {/* Additional routes will be added here */}
         </Routes>
       </main>
+
+      <Footer />
       
       {/* Modal for demo purposes */}
       <Modal
