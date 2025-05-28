@@ -253,3 +253,25 @@ src/state/appStateMachine.js
 Search for the keywords to learn more about each error.
 
 webpack compiled with 1 error and 1 warning
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/state/appStateMachine.js
+  Line 193:28:  'evt' is not defined  no-undef
+  Line 236:24:  'evt' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+WARNING in [eslint] 
+src/state/appContext.js
+  Line 24:3:    'getContestWinners' is defined but never used  no-unused-vars
+  Line 160:23:  'fileData' is assigned a value but never used  no-unused-vars
+
+ERROR in [eslint] 
+src/state/appStateMachine.js
+  Line 193:28:  'evt' is not defined  no-undef
+  Line 236:24:  'evt' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error and 1 warning

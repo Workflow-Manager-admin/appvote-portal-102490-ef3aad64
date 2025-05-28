@@ -59,7 +59,7 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                apps: (_, event) => event.data.apps || [],
+                apps: (_, evt) => evt.data.apps || [],
                 isLoading: false,
                 error: null
               })
@@ -82,7 +82,7 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                userApps: (_, event) => event.data.apps || [],
+                userApps: (_, evt) => evt.data.apps || [],
                 isLoading: false,
                 error: null
               })
@@ -105,7 +105,7 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                userVotes: (_, event) => event.data.votes || [],
+                userVotes: (_, evt) => evt.data.votes || [],
                 isLoading: false,
                 error: null
               })
@@ -123,12 +123,12 @@ export const appStateMachine = createMachine({
         // Creating a new app submission
         creatingApp: {
           entry: assign({
-            formData: (context, event) => ({
+            formData: (context, evt) => ({
               ...context.formData,
-              appName: event.appName,
-              appLink: event.appLink,
-              appDescription: event.appDescription,
-              appImage: event.appImage
+              appName: evt.appName,
+              appLink: evt.appLink,
+              appDescription: evt.appDescription,
+              appImage: evt.appImage
             }),
             isLoading: true
           }),
@@ -138,8 +138,8 @@ export const appStateMachine = createMachine({
               target: 'idle',
               actions: [
                 assign({
-                  userApps: (context, event) => [...context.userApps, event.data.app],
-                  apps: (context, event) => [...context.apps, event.data.app],
+                  userApps: (context, evt) => [...context.userApps, evt.data.app],
+                  apps: (context, evt) => [...context.apps, evt.data.app],
                   isLoading: false,
                   notification: {
                     type: 'success',
@@ -172,7 +172,7 @@ export const appStateMachine = createMachine({
               target: 'idle',
               actions: [
                 assign({
-                  userVotes: (context, event) => [...context.userVotes, event.data.vote],
+                  userVotes: (context, evt) => [...context.userVotes, evt.data.vote],
                   isLoading: false,
                   notification: {
                     type: 'success',
@@ -190,7 +190,7 @@ export const appStateMachine = createMachine({
                 isLoading: false,
                 notification: {
                   type: 'error',
-                  message: event.data.message || 'Failed to submit vote. Please try again.'
+                  message: evt.data.message || 'Failed to submit vote. Please try again.'
                 }
               })
             }
@@ -205,7 +205,7 @@ export const appStateMachine = createMachine({
             onDone: {
               target: 'idle',
               actions: assign({
-                currentApp: (_, event) => event.data.app,
+                currentApp: (_, evt) => evt.data.app,
                 isLoading: false,
                 error: null
               })
@@ -230,10 +230,10 @@ export const appStateMachine = createMachine({
         },
         SET_ERROR: {
           actions: assign({
-            error: (_, event) => event.error,
+            error: (_, evt) => evt.error,
             notification: {
               type: 'error',
-              message: event.error.message || 'An error occurred. Please try again.'
+              message: evt.error.message || 'An error occurred. Please try again.'
             }
           })
         },
