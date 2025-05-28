@@ -8,8 +8,6 @@ import { useContest } from '../state/appContext';
  * @returns {JSX.Element} Rendered winners page
  */
 const Winners = () => {
-  const [winners, setWinners] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { state } = useContest();
   const [winners, setWinners] = useState([]);
   const [loading, setLoading] = useState(true);
