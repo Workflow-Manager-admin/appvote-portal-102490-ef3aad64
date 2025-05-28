@@ -219,25 +219,51 @@ export const AppStateProvider = ({ children }) => {
   // Initialize machines and ensure they're ready
   React.useEffect(() => {
     mountedRef.current = true;
+    let initTimeout;
 
     const initializeMachines = async () => {
       try {
-        // Start the actors in order of dependency
-        await authState.start();
-        await contestState.start();
-        await appState.start();
+        // Initialize machines with proper sequencing and verification
+        const initMachine = async (machine, send) => {
+          if (!machine) throw new Error('Machine instance is undefined');
+          
+          if (machine.status !== 'running') {
+            await machine.start();
+            await new Promise(resolve => setTimeout(resolve, 50)); // Small delay for stability
+          }
+          
+          if (!machine.getSnapshot()) {
+            throw new Error('Machine snapshot unavailable after initialization');
+          }
+          
+          send({ type: 'INITIALIZED' });
+        };
 
-        // Only update state if component is still mounted
-        if (mountedRef.current) {
-          authSend({ type: 'INITIALIZED' });
-          contestSend({ type: 'INITIALIZED' });
-          appSend({ type: 'INITIALIZED' });
+        // Initialize in dependency order with verification
+        await initMachine(authState, authSend);
+        await initMachine(contestState, contestSend);
+        await initMachine(appState, appSend);
+
+        // Verify all machines are running before marking as initialized
+        if (mountedRef.current && 
+            authState.status === 'running' && 
+            contestState.status === 'running' && 
+            appState.status === 'running') {
           setIsInitialized(true);
+        } else {
+          throw new Error('One or more machines failed to initialize properly');
         }
       } catch (err) {
         if (mountedRef.current) {
           console.error('Error initializing state machines:', err);
           setError(err);
+          
+          // Retry initialization after a delay if appropriate
+          initTimeout = setTimeout(() => {
+            if (mountedRef.current && !isInitialized) {
+              initializeMachines();
+            }
+          }, 2000);
         }
       }
     };
@@ -246,14 +272,27 @@ export const AppStateProvider = ({ children }) => {
 
     return () => {
       mountedRef.current = false;
+      clearTimeout(initTimeout);
+      
       // Stop actors in reverse order of dependency
-      try {
-        if (appState.status === 'running') appState.stop();
-        if (contestState.status === 'running') contestState.stop();
-        if (authState.status === 'running') authState.stop();
-      } catch (err) {
-        console.error('Error stopping state machines:', err);
-      }
+      const stopMachine = async (machine) => {
+        try {
+          if (machine?.status === 'running') {
+            await machine.stop();
+          }
+        } catch (err) {
+          console.error('Error stopping machine:', err);
+        }
+      };
+
+      // Ensure proper cleanup even if some machines fail to stop
+      Promise.all([
+        stopMachine(appState),
+        stopMachine(contestState),
+        stopMachine(authState)
+      ]).catch(err => {
+        console.error('Error during cleanup:', err);
+      });
     };
   }, [authSend, contestSend, appSend, authState, contestState, appState]);
 
