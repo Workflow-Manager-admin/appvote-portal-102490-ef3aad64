@@ -232,33 +232,21 @@ export const AppStateProvider = ({ children }) => {
   });
 
   // Initialize machines and ensure they're ready
+  // Initialize machines synchronously to ensure proper actor lifecycles
   React.useEffect(() => {
-    const initializeMachines = async () => {
-      try {
-        // Send initial events to ensure machines are ready
-        await Promise.all([
-          new Promise(resolve => {
-            authSend('INITIALIZED');
-            resolve();
-          }),
-          new Promise(resolve => {
-            contestSend('INITIALIZED');
-            resolve();
-          }),
-          new Promise(resolve => {
-            appSend('INITIALIZED');
-            resolve();
-          })
-        ]);
-        setIsInitialized(true);
-      } catch (err) {
-        setError(err);
-        console.error('Failed to initialize state machines:', err);
-      }
-    };
+    // Ensure we start with fresh actor instances
+    authSend({ type: 'INITIALIZED' });
+    contestSend({ type: 'INITIALIZED' });
+    appSend({ type: 'INITIALIZED' });
+    setIsInitialized(true);
 
-    initializeMachines();
-  }, [authSend, contestSend, appSend]);
+    // Cleanup function to handle actor disposal
+    return () => {
+      authState.stop();
+      contestState.stop();
+      appState.stop();
+    };
+  }, [authSend, contestSend, appSend, authState, contestState, appState]);
 
   if (error) {
     return (
@@ -315,6 +303,16 @@ export const useAppState = () => {
  */
 export const useAuth = () => {
   const { authState, authSend } = useAppState();
+  
+  React.useEffect(() => {
+    // Ensure the actor is running
+    authState.start();
+    return () => {
+      // Cleanup when component unmounts
+      authState.stop();
+    };
+  }, [authState]);
+
   if (!authState || !authSend) {
     throw new Error('Auth state machine not properly initialized');
   }
@@ -328,6 +326,16 @@ export const useAuth = () => {
  */
 export const useContest = () => {
   const { contestState, contestSend } = useAppState();
+  
+  React.useEffect(() => {
+    // Ensure the actor is running
+    contestState.start();
+    return () => {
+      // Cleanup when component unmounts
+      contestState.stop();
+    };
+  }, [contestState]);
+
   if (!contestState || !contestSend) {
     throw new Error('Contest state machine not properly initialized');
   }
@@ -341,6 +349,16 @@ export const useContest = () => {
  */
 export const useAppMachine = () => {
   const { appState, appSend } = useAppState();
+  
+  React.useEffect(() => {
+    // Ensure the actor is running
+    appState.start();
+    return () => {
+      // Cleanup when component unmounts
+      appState.stop();
+    };
+  }, [appState]);
+
   if (!appState || !appSend) {
     throw new Error('App state machine not properly initialized');
   }
