@@ -199,8 +199,8 @@ export const AppStateProvider = ({ children }) => {
     }
   };
 
-  // Create service instances
-  const authService = useInterpret(authMachine, {
+  // Create machine instances with their services
+  const [authState, authSend] = useMachine(authMachine, {
     services: authServices,
     context: {
       user,
@@ -209,7 +209,7 @@ export const AppStateProvider = ({ children }) => {
     }
   });
   
-  const contestService = useInterpret(contestMachine, {
+  const [contestState, contestSend] = useMachine(contestMachine, {
     services: contestServices,
     guards: {
       isAdmin // Use the isAdmin function from SupabaseContext
@@ -222,18 +222,21 @@ export const AppStateProvider = ({ children }) => {
     }
   });
   
-  const appService = useInterpret(appStateMachine, {
+  const [appState, appSend] = useMachine(appStateMachine, {
     services: appServices,
     actions: {
       updateAppVoteCount: () => {}
     }
   });
 
-  // Provide services to components
+  // Provide state and send functions to components
   const value = {
-    authService,
-    contestService,
-    appService
+    authState,
+    authSend,
+    contestState,
+    contestSend,
+    appState,
+    appSend
   };
 
   return (
