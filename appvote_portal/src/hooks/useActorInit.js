@@ -1,5 +1,23 @@
 import { useEffect, useRef } from 'react';
 
+const logActorState = (actor, prefix = '') => {
+  try {
+    console.group(`${prefix} Actor State`);
+    console.log('Actor:', actor);
+    console.log('Status:', actor?.status);
+    console.log('Has getSnapshot:', Boolean(actor?.getSnapshot));
+    if (actor?.getSnapshot) {
+      const snapshot = actor.getSnapshot();
+      console.log('Snapshot available:', Boolean(snapshot));
+      console.log('Snapshot:', snapshot);
+    }
+    console.log('Machine:', actor?.machine);
+    console.groupEnd();
+  } catch (err) {
+    console.error('Error logging actor state:', err);
+  }
+};
+
 /**
  * Custom hook for safely initializing and managing XState actors
  * Ensures proper initialization, error handling, and cleanup of actors
