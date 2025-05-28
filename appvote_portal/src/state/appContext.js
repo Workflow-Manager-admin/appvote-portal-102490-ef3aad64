@@ -1,37 +1,3 @@
-import React, { createContext, useContext } from 'react';
-import { useMachine } from '@xstate/react';
-import { authMachine } from './authMachine';
-import { contestMachine } from './contestMachine';
-import { appStateMachine } from './appStateMachine';
-import { useSupabase } from '../services/SupabaseContext';
-import { 
-  loginUser, 
-  registerUser, 
-  logoutUser, 
-  getUserProfile,
-  getActiveContest,
-  getAllContests,
-  getContestById, 
-  createContest, 
-  updateContestStatus,
-  getAppsByContest,
-  getUserApps,
-  getAppById,
-  submitApp,
-  getUserVotesInContest,
-  submitVote,
-  declareWinners,
-  getContestWinners
-} from '../services/supabaseSchemaSetup';
-
-// Create context for state machines
-const AppStateContext = createContext(null);
-
-/**
- * AppStateProvider - Provides access to all state machines and their services throughout the app
- */
-export const AppStateProvider = ({ children }) => {
-  const { user, userProfile, supabase, isAdmin } = useSupabase();
   const [isInitialized, setIsInitialized] = React.useState(false);
   const [error, setError] = React.useState(null);
   const mountedRef = React.useRef(true);
@@ -39,7 +5,6 @@ export const AppStateProvider = ({ children }) => {
   // Auth machine services
   const authServices = {
     checkAuth: async () => {
-      // Initial auth check is handled by SupabaseContext
       return { user, userProfile };
     },
     login: async (context) => {
@@ -48,7 +13,6 @@ export const AppStateProvider = ({ children }) => {
       
       if (error) throw error;
       
-      // Fetch user profile after successful login
       const { profile, error: profileError } = await getUserProfile(user.id);
       if (profileError) throw profileError;
       
@@ -60,7 +24,6 @@ export const AppStateProvider = ({ children }) => {
       
       if (error) throw error;
       
-      // Fetch user profile after successful registration
       const { profile, error: profileError } = await getUserProfile(user.id);
       if (profileError) throw profileError;
       
@@ -157,7 +120,6 @@ export const AppStateProvider = ({ children }) => {
       
       let imageUrl = null;
       
-      // Upload image if provided
       if (appImage) {
         const filename = `${user.id}-${Date.now()}`;
         const { data: fileData, error: uploadError } = await supabase.storage
@@ -166,7 +128,6 @@ export const AppStateProvider = ({ children }) => {
           
         if (uploadError) throw uploadError;
         
-        // Get public URL
         const { data: urlData } = supabase.storage
           .from('app-images')
           .getPublicUrl(filename);
@@ -232,30 +193,18 @@ export const AppStateProvider = ({ children }) => {
     }
   });
 
-  // Initialize machines with proper error handling and cleanup
+  // Initialize machines and ensure they're ready
   React.useEffect(() => {
     mountedRef.current = true;
 
     const initializeMachines = async () => {
       try {
-        if (!mountedRef.current) return;
+        // Start the actors in order of dependency
+        await authState.start();
+        await contestState.start();
+        await appState.start();
 
-        // Start actors in dependency order with error handling
-        for (const actor of [authState, contestState, appState]) {
-          if (actor.status !== 'running') {
-            try {
-              await actor.start();
-            } catch (err) {
-              console.error(`Failed to start actor: ${actor.id}`, err);
-              if (mountedRef.current) {
-                setError(err);
-              }
-              return;
-            }
-          }
-        }
-
-        // Send initialization events only if still mounted
+        // Only update state if component is still mounted
         if (mountedRef.current) {
           authSend({ type: 'INITIALIZED' });
           contestSend({ type: 'INITIALIZED' });
@@ -263,8 +212,8 @@ export const AppStateProvider = ({ children }) => {
           setIsInitialized(true);
         }
       } catch (err) {
-        console.error('Failed to initialize state machines:', err);
         if (mountedRef.current) {
+          console.error('Error initializing state machines:', err);
           setError(err);
         }
       }
@@ -272,21 +221,16 @@ export const AppStateProvider = ({ children }) => {
 
     initializeMachines();
 
-    // Cleanup function with proper error handling
     return () => {
       mountedRef.current = false;
-      
-      // Stop actors in reverse dependency order
-      const actors = [appState, contestState, authState];
-      actors.forEach(actor => {
-        try {
-          if (actor.status === 'running') {
-            actor.stop();
-          }
-        } catch (err) {
-          console.error(`Error stopping actor: ${actor.id}`, err);
-        }
-      });
+      // Stop actors in reverse order of dependency
+      try {
+        if (appState.status === 'running') appState.stop();
+        if (contestState.status === 'running') contestState.stop();
+        if (authState.status === 'running') authState.stop();
+      } catch (err) {
+        console.error('Error stopping state machines:', err);
+      }
     };
   }, [authSend, contestSend, appSend, authState, contestState, appState]);
 
@@ -327,7 +271,6 @@ export const AppStateProvider = ({ children }) => {
 /**
  * PUBLIC_INTERFACE
  * Custom hook to use app state context
- * @returns {Object} Context object with state machine services
  */
 export const useAppState = () => {
   const context = useContext(AppStateContext);
@@ -340,181 +283,64 @@ export const useAppState = () => {
 /**
  * PUBLIC_INTERFACE
  * Custom hook to use auth state machine
- * @returns {Object} Auth state and send function
  */
 export const useAuth = () => {
   const { authState, authSend } = useAppState();
-  const mountedRef = React.useRef(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    mountedRef.current = true;
-
-    const initActor = async () => {
-      if (!mountedRef.current) return;
-
-      try {
-        if (authState && authState.status !== 'running') {
-          await authState.start();
-        }
-      } catch (err) {
-        console.error('Error initializing auth actor:', err);
-        if (mountedRef.current) {
-          setError(err);
-        }
-      }
-    };
-
-    initActor();
-
-    return () => {
-      mountedRef.current = false;
-      try {
-        if (authState?.status === 'running') {
-          authState.stop();
-        }
-      } catch (err) {
-        console.error('Error stopping auth actor:', err);
-      }
-    };
-  }, [authState]);
+  const { actor: safeActor, error } = useActorInit(authState, (err) => {
+    console.error('Auth actor error:', err);
+  });
 
   if (error) {
     throw error;
   }
 
-  if (!authState || !authSend) {
-    return { state: null, send: () => {} };
-  }
-
-  const safeSend = React.useCallback((...args) => {
-    if (!mountedRef.current || !authState?.status === 'running') return;
-    try {
-      authSend(...args);
-    } catch (err) {
-      console.error('Error sending auth event:', err);
-      if (mountedRef.current) {
-        setError(err);
-      }
-    }
-  }, [authSend, authState]);
-
-  return { state: authState, send: safeSend };
+  return {
+    state: authState,
+    send: safeActor.send,
+    status: safeActor.status
+  };
 };
 
 /**
  * PUBLIC_INTERFACE
  * Custom hook to use contest state machine
- * @returns {Object} Contest state and send function
  */
 export const useContest = () => {
   const { contestState, contestSend } = useAppState();
-  const mountedRef = React.useRef(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    mountedRef.current = true;
-
-    const initActor = async () => {
-      if (!mountedRef.current) return;
-
-      try {
-        if (contestState && contestState.status !== 'running') {
-          await contestState.start();
-        }
-      } catch (err) {
-        console.error('Error initializing contest actor:', err);
-        if (mountedRef.current) {
-          setError(err);
-        }
-      }
-    };
-
-    initActor();
-
-    return () => {
-      mountedRef.current = false;
-      try {
-        if (contestState?.status === 'running') {
-          contestState.stop();
-        }
-      } catch (err) {
-        console.error('Error stopping contest actor:', err);
-      }
-    };
-  }, [contestState]);
+  const { actor: safeActor, error } = useActorInit(contestState, (err) => {
+    console.error('Contest actor error:', err);
+  });
 
   if (error) {
     throw error;
   }
 
-  if (!contestState || !contestSend) {
-    return { state: null, send: () => {} };
-  }
-
-  const safeSend = React.useCallback((...args) => {
-    if (!mountedRef.current || !contestState?.status === 'running') return;
-    try {
-      contestSend(...args);
-    } catch (err) {
-      console.error('Error sending contest event:', err);
-      if (mountedRef.current) {
-        setError(err);
-      }
-    }
-  }, [contestSend, contestState]);
-
-  return { state: contestState, send: safeSend };
+  return {
+    state: contestState,
+    send: safeActor.send,
+    status: safeActor.status
+  };
 };
 
 /**
  * PUBLIC_INTERFACE
  * Custom hook to use app state machine
- * @returns {Object} App state and send function
  */
 export const useAppMachine = () => {
   const { appState, appSend } = useAppState();
-  const mountedRef = React.useRef(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    mountedRef.current = true;
-
-    const initActor = async () => {
-      if (!mountedRef.current) return;
-
-      try {
-        if (appState && appState.status !== 'running') {
-          await appState.start();
-        }
-      } catch (err) {
-        console.error('Error initializing app actor:', err);
-        if (mountedRef.current) {
-          setError(err);
-        }
-      }
-    };
-
-    initActor();
-
-    return () => {
-      mountedRef.current = false;
-      try {
-        if (appState?.status === 'running') {
-          appState.stop();
-        }
-      } catch (err) {
-        console.error('Error stopping app actor:', err);
-      }
-    };
-  }, [appState]);
+  const { actor: safeActor, error } = useActorInit(appState, (err) => {
+    console.error('App actor error:', err);
+  });
 
   if (error) {
     throw error;
   }
 
-  if (!appState || !appSend) {
-    return { state: null, send: () => {} };
-  }
+  return {
+    state: appState,
+    send: safeActor.send,
+    status: safeActor.status
+  };
+};
 
-  const safeSend = React.useCallback((...args) => {
+export default AppStateContext;
