@@ -264,13 +264,16 @@ export const AppStateProvider = ({ children }) => {
     );
   }
 
+  // Only provide initialized actors through context
   const value = {
-    authState,
-    authSend,
-    contestState,
-    contestSend,
-    appState,
-    appSend
+    authState: authActor.status === 'running' ? authState : null,
+    authSend: authActor.send,
+    contestState: contestActor.status === 'running' ? contestState : null,
+    contestSend: contestActor.send,
+    appState: appActor.status === 'running' ? appState : null,
+    appSend: appActor.send,
+    isInitialized,
+    error
   };
 
   return (

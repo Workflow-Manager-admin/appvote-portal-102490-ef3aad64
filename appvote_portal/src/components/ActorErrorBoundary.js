@@ -1,35 +1,38 @@
 import React from 'react';
 
-/**
- * Error boundary specifically for handling XState actor errors
- */
 class ActorErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { error: null, errorInfo: null };
   }
 
   static getDerivedStateFromError(error) {
-    return { hasError: true, error };
+    return { error };
   }
 
   componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error,
+      errorInfo: errorInfo
+    });
     console.error('Actor Error:', error, errorInfo);
   }
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.error) {
       return (
-        <div className="error-boundary">
-          <h3>State Machine Error</h3>
-          <p>{this.state.error?.message || 'An error occurred in the state machine'}</p>
+        <div className="error-boundary" style={{ padding: '20px', textAlign: 'center' }}>
+          <h2>State Management Error</h2>
+          <p>{this.state.error.toString()}</p>
           <button 
-            onClick={() => {
-              this.setState({ hasError: false, error: null });
-              window.location.reload();
+            onClick={() => window.location.reload()}
+            style={{
+              padding: '8px 16px',
+              marginTop: '10px',
+              cursor: 'pointer'
             }}
           >
-            Retry
+            Reload Application
           </button>
         </div>
       );
