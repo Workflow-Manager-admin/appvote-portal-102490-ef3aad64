@@ -261,35 +261,32 @@ export const useAppState = () => {
 
 /**
  * PUBLIC_INTERFACE
- * Custom hook to use and select from the auth state machine
- * @param {Function} selector - Selector function
- * @returns {any} Selected state value
+ * Custom hook to use auth state machine
+ * @returns {Object} Auth state and send function
  */
-export const useAuth = (selector) => {
-  const { authService } = useAppState();
-  return useSelector(authService, selector);
+export const useAuth = () => {
+  const { authState, authSend } = useAppState();
+  return { state: authState, send: authSend };
 };
 
 /**
  * PUBLIC_INTERFACE
- * Custom hook to use and select from the contest state machine
- * @param {Function} selector - Selector function
- * @returns {any} Selected state value
+ * Custom hook to use contest state machine
+ * @returns {Object} Contest state and send function
  */
-export const useContest = (selector) => {
-  const { contestService } = useAppState();
-  return useSelector(contestService, selector);
+export const useContest = () => {
+  const { contestState, contestSend } = useAppState();
+  return { state: contestState, send: contestSend };
 };
 
 /**
  * PUBLIC_INTERFACE
- * Custom hook to use and select from the app state machine
- * @param {Function} selector - Selector function
- * @returns {any} Selected state value
+ * Custom hook to use app state machine
+ * @returns {Object} App state and send function
  */
-export const useAppMachine = (selector) => {
-  const { appService } = useAppState();
-  return useSelector(appService, selector);
+export const useAppMachine = () => {
+  const { appState, appSend } = useAppState();
+  return { state: appState, send: appSend };
 };
 
 export default AppStateContext;
